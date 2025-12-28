@@ -1,0 +1,409 @@
+[
+    {
+        "id": "install_patch_17",
+        "keywords": [
+            "instalar",
+            "instalação",
+            "patch",
+            "tutorial",
+            "passo a passo",
+            "pes 2017"
+        ],
+        "question": "Como instalo o patch LXPES para o PES 2017?",
+        "answer": "Passo a passo: 1. Baixe todas as partes do patch incluindo o option file (pasta KONAMI). 2. Extraia a pasta KONAMI em Documentos. 3. Abra o jogo pelo PES2017 Multi-Switcher.exe para que todos os arquivos do patch sejam injetados corretamente. Caso seu Multi-Switcher não esteja abrindo, arraste o sider.exe até o executável do PES2017.exe e o resultado deverá ser o mesmo."
+    },
+    {
+        "id": "free_vs_vip",
+        "keywords": [
+            "diferença",
+            "gratuito",
+            "vip",
+            "vantagens",
+            "conteúdo exclusivo"
+        ],
+        "question": "Qual é a diferença entre o patch Gratuito e o VIP?",
+        "answer": "O Gratuito já inclui elencos atualizados, kits oficiais, competições e jogabilidade. O VIP oferece suporte prioritário, faces realistas, estádios exclusivos, placares televisivos, intros de ligas, melhorias gráficas, narrações únicas, tatuagens atualizadas, mosaicos e atualizações antecipadas. Além disso, ser VIP oferece um cargo especial no nosso servidor, grupo VIP separado do servidor principal para que assim seja mais fácil entrar em contato com o dono do patch."
+    },
+    {
+        "id": "compatibility_17",
+        "keywords": [
+            "compatível",
+            "steam",
+            "pirata",
+            "original",
+            "pes 2017"
+        ],
+        "question": "O patch é compatível com qual versão do PES 2017?",
+        "answer": "Atualmente o nosso patch está fora da Steam e é uma versão alternativa. Funciona como AIO (all-in-one). O jogo já vem junto do patch, facilitando a instalação."
+    },
+    {
+        "id": "crash_17",
+        "keywords": [
+            "crash",
+            "fechando",
+            "não abre",
+            "bug",
+            "pes 17"
+        ],
+        "question": "Meu PES 2017 fecha sozinho. O que fazer?",
+        "answer": "Possíveis soluções: 1. Reinstale o patch corretamente. 2. Rode o jogo como Administrador. 3. Desative o antivírus antes de iniciar. 4. Gere o DpFileList.bin novamente. 5. Atualize os drivers da placa de vídeo. 6. Execute o jogo em modo de compatibilidade (Windows 7/8). 7. Baixe os pacotes Visual C++ e o DirectX Runtime. 8. O .NET Framework também é indispensável para o funcionamento dos programas dentro do jogo."
+    },
+    {
+        "id": "generic_crash",
+        "keywords": [
+            "erro",
+            "jogo fecha",
+            "não abre",
+            "parou de funcionar",
+            "dll",
+            "directx"
+        ],
+        "question": "Meu jogo não abre ou fecha logo em seguida.",
+        "answer": "Causas comuns: 1. Bibliotecas ausentes (.NET, DirectX, Visual C++). 2. Arquivo essencial bloqueado pelo antivírus (ex: steam_api64.dll). 3. Processadores novos exigem ajuste de afinidade via Process Lasso. 4. Configurar execução como administrador e compatibilidade pode resolver. 5. Alguns bugs visuais como: tela rosa e fechamentos durante o início/término da partida podem ser resultado de falha de comunicação do Windows com processadores Intel mais recentes, como os de 12ª geração em diante."
+    },
+    {
+        "id": "antivirus_warning",
+        "keywords": [
+            "vírus",
+            "infectado",
+            "antivírus",
+            "ameaça",
+            "crack"
+        ],
+        "question": "Meu antivírus detectou vírus no patch. É seguro?",
+        "answer": "Sim. Trata-se de um falso positivo comum em arquivos modificados de jogos antigos. Desative o antivírus durante a instalação e adicione a pasta do jogo às exceções. Baixe sempre pelos links oficiais do nosso Discord para garantir segurança."
+    },
+    {
+        "id": "drive_quota_error",
+        "keywords": [
+            "download",
+            "cota excedida",
+            "limite",
+            "lotado",
+            "google drive"
+        ],
+        "question": "O Google Drive diz que a cota foi excedida. Como baixo?",
+        "answer": "1. Faça login no Google. 2. Clique em Adicionar ao Meu Drive. 3. Vá em Meu Drive, clique com o direito e Fazer uma cópia. 4. Baixe a cópia. Isso contorna o limite de downloads do Google Drive."
+    },
+    {
+        "id": "add_faces_17",
+        "keywords": [
+            "adicionar",
+            "faces",
+            "rosto",
+            "cpk",
+            "dpfilelist",
+            "pes 2017"
+        ],
+        "question": "Como adiciono novas faces ao PES 2017?",
+        "answer": "1. Coloque o .cpk da face em download. 2. Abra DpFileList Generator. 3. Marque o novo arquivo. 4. Clique em Generate DpFileList.bin. 5. Inicie o jogo. Sempre mantenha backup do DpFileList.bin original."
+    },
+    {
+        "id": "antilag_option",
+        "keywords": [
+            "antilag",
+            "lag",
+            "lento",
+            "desempenho",
+            "dpfilelist"
+        ],
+        "question": "Como ativar o antilag do patch?",
+        "answer": "O antilag é um .cpk que reduz gráficos e remove a torcida para melhorar o desempenho. Coloque em download, abra o DpFileList Generator, marque-o e clique em Generate. Para desativar, basta desmarcar."
+    },
+    {
+        "id": "controller_setup_17",
+        "keywords": [
+            "controle",
+            "joystick",
+            "configurar",
+            "settings",
+            "pes 2017"
+        ],
+        "question": "Como configuro meu controle?",
+        "answer": "Abra Settings.exe na pasta do jogo > aba Controller. Selecione X-Input (Xbox) ou D-Input (genérico/Dualshock, nesse caso recomendamos uso via cabo). Configure os botões. Se não reconhecer, use x360ce para emular um controle de Xbox 360."
+    },
+    {
+        "id": "save_update",
+        "keywords": [
+            "atualizar",
+            "salvar",
+            "save",
+            "progresso",
+            "perder"
+        ],
+        "question": "Se atualizar o patch, perco meu save?",
+        "answer": "Não, se fizer backup. Antes de atualizar, copie Documentos/KONAMI/Pro Evolution Soccer 2017/save. Depois cole de volta. Obs: algumas Master Leagues antigas podem dar erro com novos patches."
+    },
+    {
+        "id": "download_links",
+        "keywords": [
+            "links",
+            "download",
+            "onde baixar",
+            "partes"
+        ],
+        "question": "Onde baixo o patch?",
+        "answer": "No nosso Discord oficial, canais #download (free) e #lxpes-vip (VIP). Lá temos links pelo Google Drive e MediaFire. Evite links de terceiros para não pegar arquivos falsos."
+    },
+    {
+        "id": "link_shortener",
+        "keywords": [
+            "encurtador",
+            "link",
+            "anúncio",
+            "protetor"
+        ],
+        "question": "Como passar pelos encurtadores?",
+        "answer": "Normalmente: 1. Aguarde 5 segundos. 2. Feche pop-ups. 3. Clique em Continuar ou Pular. Temos tutoriais visuais no canal #mídias do Discord. Também ajudamos via #chat-suporte."
+    },
+    {
+        "id": "option_file",
+        "keywords": [
+            "option file",
+            "elencos",
+            "importar times",
+            "pes 2017"
+        ],
+        "question": "Como instalar Option Files (OF)?",
+        "answer": "1. Copie a pasta WEPES para Documentos/KONAMI/Pro Evolution Soccer 2017. 2. No jogo, vá em Editar > Importar/Exportar. 3. Selecione os times/uniformes. 4. Marque Aplicar dados a todos os jogadores. 5. Salve. Obs: sempre faça backup do seu save antes."
+    },
+    {
+        "id": "play_online",
+        "keywords": [
+            "jogar online",
+            "multiplayer",
+            "servidor",
+            "pes 2017"
+        ],
+        "question": "Posso jogar online com o patch?",
+        "answer": "Não. Os servidores oficiais foram desligados em 2018. Hoje só é possível jogar offline. Existem servidores alternativos criados por fãs, mas não são compatíveis com todos os patches e exigem configurações extras como o Parsec."
+    },
+    {
+        "id": "dpfilelist_not_showing",
+        "keywords": [
+            "dpfilelist",
+            "não aparece",
+            "erro",
+            "cpk"
+        ],
+        "question": "Meu .cpk não aparece no DpFileList Generator. O que fazer?",
+        "answer": "1. Verifique se colocou o arquivo .cpk dentro da pasta download onde fica o seu jogo. 2. Rode o DpFileList Generator como administrador. 3. Confirme se o programa está apontando para a pasta correta do PES 2017. 4. Se ainda não aparecer, baixe uma versão mais recente do Generator."
+    },
+    {
+        "id": "dpfilelist_error",
+        "keywords": [
+            "dpfilelist",
+            "erro",
+            "gerar",
+            "bin"
+        ],
+        "question": "Erro ao gerar o DpFileList.bin. Como resolver?",
+        "answer": "1. Certifique-se de que o arquivo DpFileList Generator está na mesma pasta do PES 2017. 2. Execute como administrador. 3. Delete o DpFileList.bin antigo e gere um novo. 4. Não use nomes de .cpk com caracteres especiais. 5. Verifique se não há duplicados (ex: dois arquivos com o mesmo conteúdo)."
+    },
+    {
+        "id": "dpfilelist_priority",
+        "keywords": [
+            "dpfilelist",
+            "ordem",
+            "prioridade",
+            "cpk"
+        ],
+        "question": "Qual a ordem correta dos .cpk no DpFileList?",
+        "answer": "A ordem dos .cpk define a prioridade. Arquivos no topo têm menor prioridade e os de baixo sobrescrevem. Exemplo: mantenha DLCs e kits mais acima, e faces, placares e mods gráficos mais embaixo. Isso evita conflitos."
+    },
+    {
+        "id": "---novos-itens-inicio---",
+        "keywords": [],
+        "question": "A partir daqui estão as novas perguntas adicionadas.",
+        "answer": ""
+    },
+    {
+        "id": "system_requirements",
+        "keywords": [
+            "requisitos",
+            "pc fraco",
+            "configuração mínima",
+            "rodar patch"
+        ],
+        "question": "Meu PC roda o patch LXPES 2017?",
+        "answer": "Requisitos mínimos: CPU Dual-Core 2.0 GHz, 4 GB RAM, placa de vídeo 1 GB, Windows 7/10 e 25 GB livres. Recomendado: CPU Quad-Core, 8 GB RAM, placa de vídeo 2 GB, Windows 10/11 e 30 GB livres."
+    },
+    {
+        "id": "disk_space",
+        "keywords": [
+            "espaço",
+            "armazenamento",
+            "gb",
+            "instalação"
+        ],
+        "question": "Quanto espaço o patch ocupa no HD?",
+        "answer": "O patch completo ocupa em torno de 25 a 30 GB, dependendo da versão e pacotes extras instalados."
+    },
+    {
+        "id": "auto_updates",
+        "keywords": [
+            "atualização",
+            "update",
+            "incremental",
+            "aio"
+        ],
+        "question": "Preciso baixar tudo de novo quando sai atualização?",
+        "answer": "Depende. Algumas atualizações são incrementais e só exigem pequenos arquivos extras. Já grandes versões podem precisar reinstalar o AIO."
+    },
+    {
+        "id": "commentary_issues",
+        "keywords": [
+            "narração",
+            "áudio",
+            "bug",
+            "sem som"
+        ],
+        "question": "A narração está bugada ou sem áudio, como corrigir?",
+        "answer": "Verifique se o pacote de narração foi instalado. Configure o idioma de comentários no jogo. Se continuar, reinstale os arquivos de áudio."
+    },
+    {
+        "id": "extra_mods",
+        "keywords": [
+            "mods",
+            "adicionar",
+            "compatibilidade",
+            "cpk extra"
+        ],
+        "question": "Posso usar outros mods junto com o patch?",
+        "answer": "Sim, é possível. Mas cuide da ordem dos .cpk no DpFileList, pois alguns mods podem sobrescrever arquivos do patch e causar conflitos."
+    },
+    {
+        "id": "stadiums",
+        "keywords": [
+            "estádios",
+            "adicionar",
+            "pack",
+            "arenas"
+        ],
+        "question": "O patch vem com todos os estádios? Posso adicionar novos?",
+        "answer": "O patch já inclui um pack básico de estádios. Você pode adicionar outros em .cpk pelo DpFileList Generator. Evite duplicar para não gerar bugs."
+    },
+    {
+        "id": "master_league",
+        "keywords": [
+            "master league",
+            "salvar",
+            "erro",
+            "travando"
+        ],
+        "question": "Minha Master League está travando, e agora?",
+        "answer": "Algumas Master Leagues antigas podem não ser compatíveis com novas versões do patch. Recomendamos começar um save novo após grandes updates."
+    },
+    {
+        "id": "kits_bug",
+        "keywords": [
+            "uniformes",
+            "kits",
+            "bugado",
+            "troca uniforme"
+        ],
+        "question": "Uniformes estão trocados ou bugados, como arrumar?",
+        "answer": "Reimporte o Option File. Se persistir, verifique se não há .cpk de uniformes extras em conflito no DpFileList."
+    },
+    {
+        "id": "sider_info",
+        "keywords": [
+            "sider",
+            "para que serve",
+            "função",
+            "utilidade"
+        ],
+        "question": "O que é o sider e para que serve?",
+        "answer": "O sider é um programa auxiliar que injeta conteúdos extras (placares, intros, mods gráficos) sem alterar diretamente os arquivos originais do jogo."
+    },
+    {
+        "id": "offline_install",
+        "keywords": [
+            "instalar offline",
+            "sem internet",
+            "sem conexão"
+        ],
+        "question": "Posso instalar o patch sem internet?",
+        "answer": "Sim. Basta ter todas as partes baixadas previamente. Depois é só extrair e seguir o passo a passo normalmente."
+    },
+    {
+        "id": "utorrent_no_peers-novos_codigos",
+        "keywords": [
+            "utorrent",
+            "bittorrent",
+            "sem pares",
+            "download travado",
+            "torrent não anda"
+        ],
+        "question": "Meu uTorrent/BitTorrent não conecta com pares, como resolver?",
+        "answer": "1. Feche o programa pelo Gerenciador de Tarefas (Ctrl+Shift+Esc ➜ finalizar uTorrent.exe/BitTorrent.exe). 2. Abra o torrent travado junto com outro torrent pequeno e popular para forçar a reconexão. 3. Se continuar, teste outro cliente como qBittorrent (leve, sem anúncios e com ótima conectividade). 4. Alternativamente, use o BitTorrent Web diretamente no navegador. 5. Se nada resolver, verifique firewall/antivírus, portas de entrada abertas e reinicie o roteador para renovar IP."
+    },
+    {
+        "id": "dll_missing",
+        "keywords": [
+            "erro dll",
+            "msvcr100.dll",
+            "msvcp110.dll",
+            "faltando dll",
+            "visual c++"
+        ],
+        "question": "Apareceu erro de DLL faltando (msvcr100.dll, msvcp110.dll). O que fazer?",
+        "answer": "Essas DLLs fazem parte dos pacotes Visual C++ Redistributables. 1. Baixe os pacotes oficiais da Microsoft (2010 ou pacote completo de todas as versões). 2. Instale tanto x86 quanto x64 (se Windows 64 bits). 3. Reinicie o PC e teste o jogo/programa novamente. Obs: nunca baixe DLLs de sites aleatórios, use sempre a Microsoft."
+    },
+    {
+        "id": "error_0xc000007b",
+        "keywords": [
+            "erro 0xc000007b",
+            "pes 2017 não abre",
+            "erro windows",
+            "conflito 32 64 bits"
+        ],
+        "question": "Estou com erro 0xc000007b no PES 2017. Como corrigir?",
+        "answer": "1. Reinstale os pacotes Visual C++ (x86 e x64). 2. Instale/atualize o DirectX End-User Runtime. 3. Execute o jogo como administrador e em modo de compatibilidade (Windows 7/8). 4. Recomendado: instale todas as versões do Visual C++ com o pacote completo (install_all.bat). 5. Se nada resolver, reinstale o jogo. Esse erro geralmente é causado por conflitos de bibliotecas 32/64 bits."
+    },
+    {
+        "id": "directx_error",
+        "keywords": [
+            "erro directx",
+            "d3dx9_43.dll",
+            "dll directx",
+            "directx faltando"
+        ],
+        "question": "Meu PES está dando erro de DirectX. O que faço?",
+        "answer": "1. Baixe e instale o DirectX End-User Runtime (site oficial da Microsoft). 2. Reinicie o PC e teste novamente. 3. Se persistir, abra o dxdiag (Win+R ➜ digite dxdiag) e confira a versão do DirectX instalada (mínimo: 9.0c). 4. Se estiver ausente ou corrompido, reinstale. Obs: evite baixar DLLs de DirectX de sites desconhecidos."
+    },
+    {
+        "id": "steam_api_error",
+        "keywords": [
+            "steam_api.dll",
+            "erro dll steam",
+            "arquivo ausente",
+            "jogo não abre"
+        ],
+        "question": "Erro steam_api.dll ausente ao abrir o jogo. Como resolver?",
+        "answer": "1. Se for jogo original Steam: verifique a integridade dos arquivos (Biblioteca ➜ Propriedades ➜ Arquivos locais). 2. Desative temporariamente o antivírus, pois ele pode colocar o steam_api.dll em quarentena. 3. Evite baixar DLL de sites aleatórios — se necessário, use DLL-files.com com cautela. 4. Use a versão correta (32 ou 64 bits). Coloque o arquivo na pasta raiz do jogo. Obs: esse erro é comum em versões não oficiais, prefira sempre a original."
+    },
+    {
+        "id": "pes2013_kitserver_crash",
+        "keywords": [
+            "pes 2013",
+            "kitserver",
+            "crash",
+            "jogo fecha",
+            "erro kitserver"
+        ],
+        "question": "Meu PES 2013 fecha sozinho com Kitserver. Como corrigir?",
+        "answer": "1. Instale o Kitserver na pasta do PES 2013. 2. Desative o antivírus antes de configurar. 3. No PES2013.exe ➜ Propriedades ➜ desmarque Somente leitura. 4. No config.exe do Kitserver, use Graphics Settings em Medium (Low pode causar crash). 5. No manager.exe, use Attach/Detach para vincular ao PES2013.exe. 6. Ajuste gráficos em settings.exe conforme seu PC. 7. Sempre rode como administrador e adicione exceção no antivírus."
+    },
+    {
+        "id": "google_drive_quota",
+        "keywords": [
+            "google drive",
+            "cota excedida",
+            "não é possível baixar",
+            "download lotado"
+        ],
+        "question": "O Google Drive diz que não é possível baixar o arquivo agora. Como resolver?",
+        "answer": "Isso acontece quando muitos usuários baixaram o arquivo recentemente. Espere até 24h para liberar. Alternativa: 1. Clique em Adicionar ao Meu Drive. 2. Vá em Meu Drive ➜ clique com direito ➜ Fazer uma cópia. 3. Baixe a cópia normalmente. Também temos vídeo tutorial: https://www.youtube.com/watch?v=-MwxBTkv_bA"
+    }
+]
