@@ -38,17 +38,13 @@ const config: Config = {
             animation: {
                 'pulse-slow': 'pulse 4s infinite ease-in-out',
                 'scanline': 'scanline 3s linear infinite',
-            },
-            animation: {
-  'scroll-left': 'scroll-left 80s linear infinite', // Velocidade sincronizada com o seu CSS original
+                'scroll-left': 'scroll-left 80s linear infinite',
             },
             keyframes: {
                 'scroll-left': {
-                '0%': { transform: 'translateX(0)' },
-                '100%': { transform: 'translateX(-50%)' },
-                       }
-            }, 
-            keyframes: {
+                    '0%': { transform: 'translateX(0)' },
+                    '100%': { transform: 'translateX(-50%)' },
+                },
                 scanline: {
                     '0%': { left: '-150%' },
                     '100%': { left: '150%' }
