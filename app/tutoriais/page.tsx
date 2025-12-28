@@ -28,7 +28,8 @@ export default function TutoriaisPage() {
                 setTutorials(enabledTutorials);
 
                 // Extrair categorias únicas
-                const cats = ['Todos', ...new Set(enabledTutorials.map((t: Tutorial) => t.category))] as string[];
+                const uniqueCategories = Array.from(new Set(enabledTutorials.map((t: Tutorial) => t.category))) as string[];
+                const cats = ['Todos', ...uniqueCategories];
                 setCategories(cats);
                 setLoading(false);
             })
