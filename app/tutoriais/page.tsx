@@ -49,7 +49,7 @@ export default function TutoriaisPage() {
                 <PageHeader
                     title="Nossos"
                     highlight="Tutoriais"
-                    description="Carregando..."
+                    subtitle="Carregando..."
                 />
                 <div className="flex justify-center py-20">
                     <i className="fas fa-spinner fa-spin text-4xl text-purple-500"></i>
@@ -63,7 +63,7 @@ export default function TutoriaisPage() {
             <PageHeader
                 title="Nossos"
                 highlight="Tutoriais"
-                description="Aprenda a instalar, configurar e resolver problemas do patch com nossos vídeos."
+                subtitle="Aprenda a instalar, configurar e resolver problemas do patch com nossos vídeos."
             />
 
             {/* Category Filters */}
