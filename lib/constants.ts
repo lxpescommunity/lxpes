@@ -1,6 +1,7 @@
 export const NAVIGATION_LINKS = {
     'Início': '/#inicio',
     'Nossa Equipe': '/creditos',
+    'Seja Staff': '/equipe',
     'Tutoriais': '/tutoriais',
     'FAQ': '/faq'
 };
