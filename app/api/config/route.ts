@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 const CONFIG_PATH = path.join(process.cwd(), 'data', 'site-config.json');
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'lxpes2025';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'lxpes2026';
 
 // GET - Retorna configurações (público)
 export async function GET() {

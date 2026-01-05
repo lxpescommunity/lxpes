@@ -121,7 +121,7 @@ export default function HeroSection() {
       <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
         <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-purple-600/10 border border-purple-500/30 backdrop-blur-sm animate-fade-in-up">
           <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-          <span className="text-sm text-purple-300 font-medium">Patch 2025 Disponível</span>
+          <span className="text-sm text-purple-300 font-medium">Patch 2026 Disponível</span>
         </div>
 
         <h1 className="font-orbitron font-black text-5xl md:text-7xl lg:text-8xl mb-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
