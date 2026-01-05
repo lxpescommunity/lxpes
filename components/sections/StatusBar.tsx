@@ -1,6 +1,8 @@
 'use client';
 import { useEffect, useState } from 'react';
 
+import { useConfig } from '@/lib/ConfigContext';
+
 interface Stats {
   members: string;
   online: string;
@@ -8,6 +10,7 @@ interface Stats {
 }
 
 export default function StatusBar() {
+  const config = useConfig();
   const [stats, setStats] = useState<Stats>({ members: '---', online: '---', loading: true });
 
   useEffect(() => {
@@ -54,7 +57,7 @@ export default function StatusBar() {
     },
     {
       label: 'Versão Atual',
-      value: 'v2.0',
+      value: config.patch.version || 'v2.0',
       icon: 'fas fa-code-branch',
       color: 'text-purple-400',
       bgColor: 'bg-purple-500/10',

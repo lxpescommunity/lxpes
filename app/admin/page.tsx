@@ -449,7 +449,7 @@ export default function AdminPage() {
                                         value={config.patch.version}
                                         onChange={(e) => updateConfig('patch.version', e.target.value)}
                                         className="w-full bg-[#0d0d12] border border-white/10 rounded-xl px-4 py-3 text-white focus:border-purple-500 outline-none"
-                                        placeholder="v2.0"
+                                        placeholder="Ex: v2.0"
                                     />
                                 </div>
                             </div>
