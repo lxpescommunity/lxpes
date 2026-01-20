@@ -23,6 +23,7 @@ interface SiteConfig {
 export default function AdminPage() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [config, setConfig] = useState<SiteConfig | null>(null);
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState({ type: '', text: '' });
@@ -181,35 +182,67 @@ export default function AdminPage() {
     // Login Screen
     if (!isLoggedIn) {
         return (
-            <main className="min-h-screen bg-[#0d0d12] flex items-center justify-center p-4">
-                <div className="w-full max-w-md">
+            <main className="min-h-screen bg-[#0d0d12] flex items-center justify-center p-4 relative overflow-hidden">
+                {/* Background Effects */}
+                <div className="absolute inset-0 pointer-events-none">
+                    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl"></div>
+                    <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-800/10 rounded-full blur-3xl"></div>
+                </div>
+
+                <div className="w-full max-w-md relative z-10">
+                    {/* Back to Site Button */}
+                    <a
+                        href="/"
+                        className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-8 group transition-colors"
+                    >
+                        <i className="fas fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
+                        <span>Voltar ao site</span>
+                    </a>
+
                     <div className="text-center mb-8">
-                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center mx-auto mb-4">
-                            <i className="fas fa-lock text-white text-2xl"></i>
+                        <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-purple-500/30">
+                            <i className="fas fa-shield-alt text-white text-3xl"></i>
                         </div>
-                        <h1 className="font-orbitron font-bold text-2xl text-white">Painel Admin</h1>
-                        <p className="text-gray-500 mt-2">LXPES Community</p>
+                        <h1 className="font-orbitron font-bold text-3xl text-white mb-2">Painel Admin</h1>
+                        <p className="text-gray-500">LXPES Community • Acesso Restrito</p>
                     </div>
 
-                    <form onSubmit={handleLogin} className="bg-[#1a1a24] rounded-2xl border border-white/10 p-8">
+                    <form onSubmit={handleLogin} className="bg-[#1a1a24]/80 backdrop-blur-xl rounded-2xl border border-white/10 p-8 shadow-2xl">
                         <div className="mb-6">
-                            <label className="block text-gray-400 text-sm mb-2">Senha de Acesso</label>
-                            <input
-                                type="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                className="w-full bg-[#0d0d12] border border-white/10 rounded-xl px-4 py-3 text-white focus:border-purple-500 outline-none transition-colors"
-                                placeholder="Digite a senha..."
-                                required
-                            />
+                            <label className="block text-gray-400 text-sm mb-2 font-medium">
+                                <i className="fas fa-key mr-2 text-purple-400"></i>Senha de Acesso
+                            </label>
+                            <div className="relative">
+                                <input
+                                    type={showPassword ? 'text' : 'password'}
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    className="w-full bg-[#0d0d12] border border-white/10 rounded-xl px-4 py-4 pr-12 text-white focus:border-purple-500 outline-none transition-all focus:shadow-[0_0_0_3px_rgba(160,32,240,0.1)]"
+                                    placeholder="Digite a senha..."
+                                    required
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-purple-400 transition-colors"
+                                >
+                                    <i className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+                                </button>
+                            </div>
                         </div>
                         <button
                             type="submit"
-                            className="w-full py-4 rounded-xl bg-purple-600 text-white font-bold hover:bg-purple-500 transition-colors"
+                            className="w-full py-4 rounded-xl bg-gradient-to-r from-purple-600 to-purple-700 text-white font-bold hover:from-purple-500 hover:to-purple-600 transition-all hover:shadow-lg hover:shadow-purple-500/30 flex items-center justify-center gap-2"
                         >
-                            Entrar
+                            <i className="fas fa-sign-in-alt"></i>
+                            Entrar no Painel
                         </button>
                     </form>
+
+                    <p className="text-center text-gray-600 text-sm mt-6">
+                        <i className="fas fa-lock mr-2"></i>
+                        Conexão segura
+                    </p>
                 </div>
             </main>
         );
