@@ -1,3 +1,4 @@
+'use client';
 import HeroSection from '@/components/sections/HeroSection';
 import StatusBar from '@/components/sections/StatusBar';
 import FeaturesGrid from '@/components/sections/FeaturesGrid';
@@ -5,8 +6,10 @@ import HowToInstall from '@/components/sections/HowToInstall';
 import VersionsSection from '@/components/sections/VersionsSection';
 import FeedbackSection from '@/components/sections/FeedbackSection';
 import Link from 'next/link';
+import { useConfig } from '@/lib/ConfigContext';
 
 export default function Home() {
+    const config = useConfig();
     return (
         <main className="min-h-screen bg-[#0d0d12]">
             <HeroSection />
@@ -66,7 +69,7 @@ export default function Home() {
                             </p>
                         </div>
                         <a
-                            href="https://discord.gg/lxnan"
+                            href={config.discord.invite}
                             target="_blank"
                             className="flex-shrink-0 inline-flex items-center gap-3 px-10 py-5 rounded-full bg-[#5865F2] text-white font-bold text-lg hover:bg-[#4752C4] hover:shadow-[0_0_30px_rgba(88,101,242,0.5)] transition-all"
                         >

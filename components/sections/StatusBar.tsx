@@ -16,8 +16,8 @@ export default function StatusBar() {
   useEffect(() => {
     async function fetchDiscordStats() {
       try {
-        // Usando o código de convite do Discord LXPES
-        const inviteCode = process.env.NEXT_PUBLIC_DISCORD_INVITE || 'EeWXH5QRnB';
+        // Usando o código de convite do Discord LXPES (dinâmico via Config)
+        const inviteCode = config.discord.inviteCode || 'EeWXH5QRnB';
         const res = await fetch(`https://discord.com/api/v9/invites/${inviteCode}?with_counts=true`);
 
         if (!res.ok) throw new Error('Failed to fetch');
@@ -44,7 +44,7 @@ export default function StatusBar() {
     // Refresh a cada 5 minutos
     const interval = setInterval(fetchDiscordStats, 5 * 60 * 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [config.discord.inviteCode]);
 
   const statItems = [
     {

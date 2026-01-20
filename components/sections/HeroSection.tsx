@@ -1,7 +1,9 @@
 'use client';
 import { useEffect, useRef } from 'react';
+import { useConfig } from '@/lib/ConfigContext';
 
 export default function HeroSection() {
+  const config = useConfig();
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -140,7 +142,7 @@ export default function HeroSection() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
           <a
-            href="https://discord.gg/lxnan"
+            href={config.discord.invite}
             target="_blank"
             rel="noopener noreferrer"
             className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-full bg-purple-600 text-white font-orbitron font-bold text-lg hover:bg-purple-500 transition-all duration-300 hover:shadow-[0_0_50px_rgba(160,32,240,0.6)] hover:-translate-y-1"
