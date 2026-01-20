@@ -126,23 +126,40 @@ export default function AdminPage() {
     const fetchYouTubeData = async (tutorialId: number, youtubeId: string) => {
         if (!youtubeId || !config) return;
 
+        setMessage({ type: '', text: '' });
+
         try {
-            // Using YouTube oEmbed API (no API key needed)
-            const res = await fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${youtubeId}&format=json`);
+            // Use our API endpoint for full data (with YouTube API key support)
+            const res = await fetch(`/api/youtube?videoId=${youtubeId}`);
             if (!res.ok) throw new Error('Video not found');
 
             const data = await res.json();
 
-            // Update tutorial with fetched data
+            // Update tutorial with all fetched data
             const newTutorials = config.tutorials.map(t =>
                 t.id === tutorialId ? {
                     ...t,
                     title: data.title || t.title,
+                    description: data.description || t.description,
+                    duration: data.duration || t.duration,
+                    views: data.views || t.views,
                     youtubeId: youtubeId
                 } : t
             );
             setConfig({ ...config, tutorials: newTutorials });
-            setMessage({ type: 'success', text: `Dados do YouTube carregados: "${data.title}"` });
+
+            // Show what was updated
+            const updates = [];
+            if (data.title) updates.push('título');
+            if (data.duration) updates.push('duração');
+            if (data.views) updates.push('views');
+            if (data.description) updates.push('descrição');
+
+            if (updates.length > 0) {
+                setMessage({ type: 'success', text: `Carregado: ${updates.join(', ')} ✓` });
+            } else {
+                setMessage({ type: 'success', text: `Título carregado: "${data.title}"` });
+            }
         } catch (error) {
             setMessage({ type: 'error', text: 'Não foi possível buscar dados do YouTube' });
         }
