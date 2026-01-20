@@ -110,6 +110,57 @@ export default function AdminPage() {
         setConfig({ ...config, tutorials: config.tutorials.filter(t => t.id !== id) });
     };
 
+    const moveTutorial = (id: number, direction: 'up' | 'down') => {
+        if (!config) return;
+        const tutorials = [...config.tutorials];
+        const index = tutorials.findIndex(t => t.id === id);
+        if (index === -1) return;
+
+        const newIndex = direction === 'up' ? index - 1 : index + 1;
+        if (newIndex < 0 || newIndex >= tutorials.length) return;
+
+        [tutorials[index], tutorials[newIndex]] = [tutorials[newIndex], tutorials[index]];
+        setConfig({ ...config, tutorials });
+    };
+
+    const fetchYouTubeData = async (tutorialId: number, youtubeId: string) => {
+        if (!youtubeId || !config) return;
+
+        try {
+            // Using YouTube oEmbed API (no API key needed)
+            const res = await fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${youtubeId}&format=json`);
+            if (!res.ok) throw new Error('Video not found');
+
+            const data = await res.json();
+
+            // Update tutorial with fetched data
+            const newTutorials = config.tutorials.map(t =>
+                t.id === tutorialId ? {
+                    ...t,
+                    title: data.title || t.title,
+                    youtubeId: youtubeId
+                } : t
+            );
+            setConfig({ ...config, tutorials: newTutorials });
+            setMessage({ type: 'success', text: `Dados do YouTube carregados: "${data.title}"` });
+        } catch (error) {
+            setMessage({ type: 'error', text: 'Não foi possível buscar dados do YouTube' });
+        }
+    };
+
+    const extractYouTubeId = (input: string): string => {
+        // Handle various YouTube URL formats
+        const patterns = [
+            /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/,
+            /^([a-zA-Z0-9_-]{11})$/
+        ];
+        for (const pattern of patterns) {
+            const match = input.match(pattern);
+            if (match) return match[1];
+        }
+        return input;
+    };
+
     // Login Screen
     if (!isLoggedIn) {
         return (
@@ -329,98 +380,180 @@ export default function AdminPage() {
                                 </button>
                             </div>
 
-                            <div className="space-y-4">
-                                {config.tutorials.map((tutorial) => (
-                                    <div key={tutorial.id} className="p-5 bg-[#0d0d12] rounded-xl border border-white/5">
-                                        <div className="flex items-start justify-between mb-4">
-                                            <div className="flex items-center gap-3">
-                                                <label className="flex items-center gap-2 cursor-pointer">
-                                                    <input
-                                                        type="checkbox"
-                                                        checked={tutorial.enabled}
-                                                        onChange={(e) => updateTutorial(tutorial.id, 'enabled', e.target.checked)}
-                                                        className="w-5 h-5 rounded bg-white/10 border-white/20 text-purple-500 focus:ring-purple-500"
-                                                    />
-                                                    <span className={`text-sm ${tutorial.enabled ? 'text-green-400' : 'text-gray-500'}`}>
-                                                        {tutorial.enabled ? 'Ativo' : 'Inativo'}
-                                                    </span>
-                                                </label>
-                                            </div>
-                                            <button
-                                                onClick={() => removeTutorial(tutorial.id)}
-                                                className="text-red-400 hover:text-red-300 text-sm"
-                                            >
-                                                <i className="fas fa-trash"></i>
-                                            </button>
-                                        </div>
+                            <div className="p-4 bg-blue-500/10 border border-blue-500/30 rounded-xl mb-4">
+                                <div className="flex items-start gap-3">
+                                    <i className="fas fa-lightbulb text-blue-400 mt-0.5"></i>
+                                    <div className="text-sm text-blue-300">
+                                        <strong>Dica:</strong> Cole o link do YouTube ou ID do vídeo e clique em "Buscar" para preencher o título automaticamente.
+                                    </div>
+                                </div>
+                            </div>
 
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                            <div>
-                                                <label className="block text-gray-500 text-xs mb-1">Título</label>
-                                                <input
-                                                    type="text"
-                                                    value={tutorial.title}
-                                                    onChange={(e) => updateTutorial(tutorial.id, 'title', e.target.value)}
-                                                    className="w-full bg-[#1a1a24] border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:border-purple-500 outline-none"
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="block text-gray-500 text-xs mb-1">ID do YouTube</label>
-                                                <input
-                                                    type="text"
-                                                    value={tutorial.youtubeId}
-                                                    onChange={(e) => updateTutorial(tutorial.id, 'youtubeId', e.target.value)}
-                                                    className="w-full bg-[#1a1a24] border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:border-purple-500 outline-none"
-                                                    placeholder="dQw4w9WgXcQ"
-                                                />
-                                            </div>
-                                            <div className="md:col-span-2">
-                                                <label className="block text-gray-500 text-xs mb-1">Descrição</label>
-                                                <input
-                                                    type="text"
-                                                    value={tutorial.description}
-                                                    onChange={(e) => updateTutorial(tutorial.id, 'description', e.target.value)}
-                                                    className="w-full bg-[#1a1a24] border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:border-purple-500 outline-none"
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="block text-gray-500 text-xs mb-1">Categoria</label>
-                                                <select
-                                                    value={tutorial.category}
-                                                    onChange={(e) => updateTutorial(tutorial.id, 'category', e.target.value)}
-                                                    className="w-full bg-[#1a1a24] border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:border-purple-500 outline-none"
-                                                >
-                                                    <option value="Instalação">Instalação</option>
-                                                    <option value="Personalização">Personalização</option>
-                                                    <option value="Problemas">Problemas</option>
-                                                </select>
-                                            </div>
-                                            <div className="flex gap-4">
-                                                <div className="flex-1">
-                                                    <label className="block text-gray-500 text-xs mb-1">Duração</label>
-                                                    <input
-                                                        type="text"
-                                                        value={tutorial.duration}
-                                                        onChange={(e) => updateTutorial(tutorial.id, 'duration', e.target.value)}
-                                                        className="w-full bg-[#1a1a24] border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:border-purple-500 outline-none"
-                                                        placeholder="10:35"
+                            <div className="space-y-4">
+                                {config.tutorials.map((tutorial, index) => (
+                                    <div key={tutorial.id} className="p-5 bg-[#0d0d12] rounded-xl border border-white/5 hover:border-purple-500/20 transition-colors">
+                                        <div className="flex items-start gap-4">
+                                            {/* Thumbnail Preview */}
+                                            <div className="flex-shrink-0">
+                                                {tutorial.youtubeId ? (
+                                                    <img
+                                                        src={`https://img.youtube.com/vi/${tutorial.youtubeId}/mqdefault.jpg`}
+                                                        alt="Thumbnail"
+                                                        className="w-32 h-20 object-cover rounded-lg border border-white/10"
                                                     />
+                                                ) : (
+                                                    <div className="w-32 h-20 bg-white/5 rounded-lg border border-white/10 flex items-center justify-center">
+                                                        <i className="fas fa-video text-gray-600 text-2xl"></i>
+                                                    </div>
+                                                )}
+                                            </div>
+
+                                            {/* Content */}
+                                            <div className="flex-grow">
+                                                <div className="flex items-start justify-between mb-3">
+                                                    <div className="flex items-center gap-3">
+                                                        <label className="flex items-center gap-2 cursor-pointer">
+                                                            <input
+                                                                type="checkbox"
+                                                                checked={tutorial.enabled}
+                                                                onChange={(e) => updateTutorial(tutorial.id, 'enabled', e.target.checked)}
+                                                                className="w-5 h-5 rounded bg-white/10 border-white/20 text-purple-500 focus:ring-purple-500"
+                                                            />
+                                                            <span className={`text-sm font-medium ${tutorial.enabled ? 'text-green-400' : 'text-gray-500'}`}>
+                                                                {tutorial.enabled ? 'Ativo' : 'Inativo'}
+                                                            </span>
+                                                        </label>
+                                                        <span className="text-xs text-gray-600">#{index + 1}</span>
+                                                    </div>
+                                                    <div className="flex items-center gap-2">
+                                                        {/* Reorder Buttons */}
+                                                        <button
+                                                            onClick={() => moveTutorial(tutorial.id, 'up')}
+                                                            disabled={index === 0}
+                                                            className="w-8 h-8 rounded-lg bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                                                            title="Mover para cima"
+                                                        >
+                                                            <i className="fas fa-chevron-up"></i>
+                                                        </button>
+                                                        <button
+                                                            onClick={() => moveTutorial(tutorial.id, 'down')}
+                                                            disabled={index === config.tutorials.length - 1}
+                                                            className="w-8 h-8 rounded-lg bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                                                            title="Mover para baixo"
+                                                        >
+                                                            <i className="fas fa-chevron-down"></i>
+                                                        </button>
+                                                        <button
+                                                            onClick={() => removeTutorial(tutorial.id)}
+                                                            className="w-8 h-8 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 hover:text-red-300 transition-all"
+                                                            title="Remover"
+                                                        >
+                                                            <i className="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                                <div className="flex-1">
-                                                    <label className="block text-gray-500 text-xs mb-1">Views</label>
-                                                    <input
-                                                        type="text"
-                                                        value={tutorial.views}
-                                                        onChange={(e) => updateTutorial(tutorial.id, 'views', e.target.value)}
-                                                        className="w-full bg-[#1a1a24] border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:border-purple-500 outline-none"
-                                                        placeholder="15K"
-                                                    />
+
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                                    {/* YouTube ID with Auto-fetch */}
+                                                    <div className="md:col-span-2">
+                                                        <label className="block text-gray-500 text-xs mb-1">Link ou ID do YouTube</label>
+                                                        <div className="flex gap-2">
+                                                            <input
+                                                                type="text"
+                                                                value={tutorial.youtubeId}
+                                                                onChange={(e) => {
+                                                                    const id = extractYouTubeId(e.target.value);
+                                                                    updateTutorial(tutorial.id, 'youtubeId', id);
+                                                                }}
+                                                                className="flex-grow bg-[#1a1a24] border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:border-purple-500 outline-none"
+                                                                placeholder="Cole o link ou ID do vídeo"
+                                                            />
+                                                            <button
+                                                                onClick={() => fetchYouTubeData(tutorial.id, tutorial.youtubeId)}
+                                                                className="px-4 py-2 rounded-lg bg-purple-600 text-white text-sm font-medium hover:bg-purple-500 transition-colors flex items-center gap-2"
+                                                            >
+                                                                <i className="fas fa-magic"></i>
+                                                                Buscar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="md:col-span-2">
+                                                        <label className="block text-gray-500 text-xs mb-1">Título</label>
+                                                        <input
+                                                            type="text"
+                                                            value={tutorial.title}
+                                                            onChange={(e) => updateTutorial(tutorial.id, 'title', e.target.value)}
+                                                            className="w-full bg-[#1a1a24] border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:border-purple-500 outline-none"
+                                                        />
+                                                    </div>
+
+                                                    <div className="md:col-span-2">
+                                                        <label className="block text-gray-500 text-xs mb-1">Descrição</label>
+                                                        <textarea
+                                                            value={tutorial.description}
+                                                            onChange={(e) => updateTutorial(tutorial.id, 'description', e.target.value)}
+                                                            className="w-full bg-[#1a1a24] border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:border-purple-500 outline-none resize-none"
+                                                            rows={2}
+                                                        />
+                                                    </div>
+
+                                                    <div>
+                                                        <label className="block text-gray-500 text-xs mb-1">Categoria</label>
+                                                        <select
+                                                            value={tutorial.category}
+                                                            onChange={(e) => updateTutorial(tutorial.id, 'category', e.target.value)}
+                                                            className="w-full bg-[#1a1a24] border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:border-purple-500 outline-none"
+                                                        >
+                                                            <option value="Instalação">Instalação</option>
+                                                            <option value="Personalização">Personalização</option>
+                                                            <option value="Problemas">Problemas</option>
+                                                            <option value="Downloads">Downloads</option>
+                                                            <option value="Outros">Outros</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div className="flex gap-3">
+                                                        <div className="flex-1">
+                                                            <label className="block text-gray-500 text-xs mb-1">Duração</label>
+                                                            <input
+                                                                type="text"
+                                                                value={tutorial.duration}
+                                                                onChange={(e) => updateTutorial(tutorial.id, 'duration', e.target.value)}
+                                                                className="w-full bg-[#1a1a24] border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:border-purple-500 outline-none"
+                                                                placeholder="10:35"
+                                                            />
+                                                        </div>
+                                                        <div className="flex-1">
+                                                            <label className="block text-gray-500 text-xs mb-1">Views</label>
+                                                            <input
+                                                                type="text"
+                                                                value={tutorial.views}
+                                                                onChange={(e) => updateTutorial(tutorial.id, 'views', e.target.value)}
+                                                                className="w-full bg-[#1a1a24] border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:border-purple-500 outline-none"
+                                                                placeholder="15K"
+                                                            />
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 ))}
                             </div>
+
+                            {config.tutorials.length === 0 && (
+                                <div className="text-center py-12 text-gray-500">
+                                    <i className="fas fa-video text-4xl mb-4 block text-gray-600"></i>
+                                    <p>Nenhum tutorial adicionado</p>
+                                    <button
+                                        onClick={addTutorial}
+                                        className="mt-4 text-purple-400 hover:text-purple-300"
+                                    >
+                                        + Adicionar primeiro tutorial
+                                    </button>
+                                </div>
+                            )}
                         </div>
                     )}
 
